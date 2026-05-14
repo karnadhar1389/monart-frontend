@@ -3232,7 +3232,7 @@ const CheckoutPage = ({ cart, setPage, user, discountPct, clearCart, showToast, 
   useEffect(() => {
   if (step === 2) {
     console.log("🔥 FETCHING PAYMENT INTENT...");
-    fetch("http://localhost:5000/api/create-payment-intent", {
+    fetch("https://monart-backend.onrender.com/api/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -3317,7 +3317,7 @@ console.log("STORED SHIPPING:", localStorage.getItem("checkout_shipping"));
     // // ✅ ONLY for card (no redirect)
     // if (result.paymentIntent?.status === "succeeded") {
 
-    //   const res = await fetch("http://localhost:5000/api/orders", {
+    //   const res = await fetch("https://monart-backend.onrender.com/api/orders", {
     //     method: "POST",
     //     headers: { "Content-Type": "application/json" },
     //     body: JSON.stringify({
@@ -3916,7 +3916,7 @@ const AuthPage = ({ mode, setPage, onLogin, showToast }) => {
     const firebaseUser = userCredential.user;
 
 // 🔐 call backend to verify admin
-const res = await fetch("http://localhost:5000/api/admin-login", {
+const res = await fetch("https://monart-backend.onrender.com/api/admin-login", {
   method: "POST",
   headers: {
     "Content-Type": "application/json"
@@ -4011,7 +4011,7 @@ const AccountPage = ({ user, onLogout, setPage, wishlist, onWishlist, setSelecte
 //   useEffect(() => {
 //   if (!user) return;
 
-//   fetch(`http://localhost:5000/api/orders/${user.email}`)
+//   fetch(`https://monart-backend.onrender.com/api/orders/${user.email}`)
 //     .then(res => res.json())
 //     .then(data => setOrders(data))
 //     .catch(err => console.error(err));
@@ -4019,7 +4019,7 @@ const AccountPage = ({ user, onLogout, setPage, wishlist, onWishlist, setSelecte
 //   useEffect(() => {
 //   if (!user?.email) return;
 
-//   fetch(`http://localhost:5000/api/orders?email=${user.email}`)
+//   fetch(`https://monart-backend.onrender.com/api/orders?email=${user.email}`)
 //     .then(res => res.json())
 //     .then(data => setOrders(data))
 //     .catch(err => console.error(err));
@@ -4029,7 +4029,7 @@ useEffect(() => {
   if (!user?.email) return;
 
   const fetchOrders = () => {
-    fetch(`http://localhost:5000/api/orders?email=${user.email}`)
+    fetch(`https://monart-backend.onrender.com/api/orders?email=${user.email}`)
       .then(res => res.json())
       .then(data => setOrders(data))
       .catch(err => console.error(err));
@@ -4295,7 +4295,7 @@ const AdminPage = ({ user, setPage, products, setProducts, showToast, setSelecte
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-  fetch("http://localhost:5000/api/orders")
+  fetch("https://monart-backend.onrender.com/api/orders")
     .then(res => res.json())
     .then(data => setOrders(data))
     .catch(err => console.error(err));
@@ -4855,7 +4855,7 @@ const overviewTotalPages = Math.ceil(
           onChange={async (e) => {
             const newStatus = e.target.value;
 
-            await fetch(`http://localhost:5000/api/orders/${o._id}`, {
+            await fetch(`https://monart-backend.onrender.com/api/orders/${o._id}`, {
               method: "PUT",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ status: newStatus })
@@ -4864,7 +4864,7 @@ const overviewTotalPages = Math.ceil(
             showToast("Order updated!");
 
             // refresh orders
-            const res = await fetch("http://localhost:5000/api/orders");
+            const res = await fetch("https://monart-backend.onrender.com/api/orders");
             const data = await res.json();
             setOrders(data);
           }}
@@ -5855,7 +5855,7 @@ export default function App() {
 
     const totalAmount = cart.reduce((s, i) => s + i.price * i.qty, 0);
 
-    fetch("http://localhost:5000/api/create-payment-intent", {
+    fetch("https://monart-backend.onrender.com/api/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -5895,7 +5895,7 @@ useEffect(() => {
 //     setPage("success");
 
 //     // ✅ CREATE ORDER AFTER PAYMENT
-//     fetch("http://localhost:5000/api/orders", {
+//     fetch("https://monart-backend.onrender.com/api/orders", {
 //       method: "POST",
 //       headers: {
 //         "Content-Type": "application/json"
@@ -6112,7 +6112,7 @@ useEffect(() => {
   console.log("📦 SHIPPING:", savedShipping);
 
   // ✅ CREATE ORDER ONLY ONCE
-  fetch("http://localhost:5000/api/orders", {
+  fetch("https://monart-backend.onrender.com/api/orders", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
